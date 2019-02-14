@@ -4,8 +4,6 @@ function getVideoType(videoPath)
     var path = {type: "null", id: "null"};
     var startIndex;
 
-    //var typeMp4 = link.match(/mp4/);
-
     if(link.match(/youtube/) != null)
     {
      path.type = link.match(/youtube/)[0];
@@ -22,13 +20,12 @@ function getVideoType(videoPath)
             path.id = link.slice(startIndex + 4);
      }
 
-    // else if(link.match(/mp4/) != null)
-    //  {
-    //      path.type =  link.match(/mp4/)[0];
-    //  }
-
-
-    
+    else if(link.match(/mp4/) != null)
+     {
+         path.type =  link.match(/mp4/)[0];
+         path.id = link;
+     }
+     
     return path;
 }
 
