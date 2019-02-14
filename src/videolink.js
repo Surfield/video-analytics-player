@@ -1,21 +1,32 @@
-import Vue from 'vue'
-import App from './App.vue'
-import VuePlyr from 'vue-plyr'
-import 'vue-plyr/dist/vue-plyr.css'
-
 function getVideoType(videoPath)
 {
-    var link = videoPath.toLowerCase();
-    var path;
+    var link = videoPath;
+    var path = {type: "null", id: "null"};
+    var startIndex;
 
     if(link.match(/youtube/) != null)
-     path = link.match(/youtube/);
+    {
+     path.type = link.match(/youtube/)[0];
+     startIndex = link.search("v=");
+     if(startIndex != null)
+        path.id = link.slice(startIndex + 2);
+    }
 
-    elseif(link.match(/vimeo/) != null)
-     path = link.match(/vimeo/);
+    else if(link.match(/vimeo/) != null)
+     {
+         path.type = link.match(/vimeo/)[0];
+         startIndex = link.search("com/");
+         if(startIndex != null)
+            path.id = link.slice(startIndex + 4);
+     }
 
-    elseif(link.match(/mp4/) != null)
-     path =  link.match(/mp4/)
-
+    else if(link.match(/mp4/) != null)
+     {
+         path.type =  link.match(/mp4/)[0];
+         path.id = link;
+     }
+     
     return path;
 }
+
+module.exports = getVideoType;
