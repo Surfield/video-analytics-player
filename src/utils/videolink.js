@@ -1,9 +1,14 @@
-function getVideoType(videoPath)
+export default function getVideoType(videoPath)
 {
     var link = videoPath;
-    var path = {type: "null", id: "null"};
+    var path = {type: null, id: null};
     var startIndex;
 
+    if (link === undefined){
+        return path;
+    }
+
+    link.trim()
     if(link.match(/youtube/) != null)
     {
      path.type = link.match(/youtube/)[0];
@@ -28,5 +33,3 @@ function getVideoType(videoPath)
      
     return path;
 }
-
-module.exports = getVideoType;

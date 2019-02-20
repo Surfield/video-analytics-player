@@ -1,4 +1,4 @@
-const getVideoType = require('./videolink');
+import getVideoType from '../utils/videolink'
 
 test('Youtube video type',() => {
     expect(getVideoType("https://www.youtube.com/watch?v=7r4xVDI2vho")).toEqual({"id": "7r4xVDI2vho", "type": "youtube"})
@@ -13,5 +13,5 @@ test('Detects mp4 video type',() => {
 });
 
 test('No pre-defined video type',() => {
-    expect(getVideoType("https://dfhcbdhc//sd.com")).toEqual({"id": "null", "type": "null"})
+    expect(getVideoType("https://dfhcbdhc//sd.com")).toEqual({"id": null, "type": null})
 });

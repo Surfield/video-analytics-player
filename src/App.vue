@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <input type="text" placeholder="Enter your url of the video you want to analyze" v-model="videoAnalyze">
-    <VideoAnalyticsPlayer source="Welcome to Your Vue.js App"/>
+    <form>
+      <input type="text" placeholder="Enter your url of the video you want to analyze" v-model="srcUrl">
+    </form>
+    <videoAnalyticsPlayer :srcUrl="srcUrl" :poster="poster" :userVars="userVars"/>
   </div>
 </template>
 
@@ -12,12 +14,17 @@ import VideoAnalyticsPlayer from './components/VideoAnalyticsPlayer.vue'
 export default {
   name: 'app',
   components: {
-    VideoAnalyticsPlayer
+    "videoAnalyticsPlayer": VideoAnalyticsPlayer
   },
   data(){
     return{
-      videoAnalyze: ''
+      poster:'',
+      srcUrl: '',
+      userVars: {}
     }
+  },
+  methods: {
+    
   }
 }
 </script>
