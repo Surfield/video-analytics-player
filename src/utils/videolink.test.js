@@ -1,4 +1,4 @@
-import getVideoType from '../utils/videolink'
+import getVideoType from './videolink'
 
 test('Youtube video type',() => {
     expect(getVideoType("https://www.youtube.com/watch?v=7r4xVDI2vho")).toEqual({"id": "7r4xVDI2vho", "type": "youtube"})

@@ -4,7 +4,7 @@
     <form>
       <input type="text" placeholder="Enter your url of the video you want to analyze" v-model="srcUrl">
     </form>
-    <videoAnalyticsPlayer :srcUrl="srcUrl" :poster="poster" :userVars="userVars"/>
+    <videoAnalyticsPlayer :srcUrl="srcUrl" :poster="poster" :meta="meta"/>
   </div>
 </template>
 
@@ -20,7 +20,7 @@ export default {
     return{
       poster:'',
       srcUrl: '',
-      userVars: {}
+      meta: {id: 10, name: "asdfads"}
     }
   },
   methods: {

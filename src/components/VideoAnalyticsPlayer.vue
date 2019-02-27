@@ -1,20 +1,51 @@
 <template>
-  <div class="hello">
-    <vue-plyr>
-      <div data-plyr-provider="youtube" data-plyr-embed-id="bTqVqk7FSmY"></div>
-    </vue-plyr>
+  <div>
+    <component v-if="getVideoComponent" :is="videoComponent" :meta="meta" :videoType='playerData.type' :videoId='playerData.id'/>
   </div>
 </template>
 
 <script>
+// try this https://www.youtube.com/watch?v=BeGT93vnLYo
+// try this https://vimeo.com/223704825
+// try this http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4
+import Mp4Player from './Mp4Player.vue'
+import YoutubeVimeoPlayer from './YoutubeVimeoPlayer.vue'
+import getVideoType from '../utils/videolink'
+
 export default {
   name: 'VideoAnalyticsPlayer',
+  components: {
+    'youtube': YoutubeVimeoPlayer,
+    'vimeo': YoutubeVimeoPlayer,
+    'mp4': Mp4Player
+  },
   props: {
-    source: String
+    srcUrl: String,
+    poster: String,
+    meta: Object,
+  },
+  methods: {
+    sendData() {
+      let playerTypeObj = getVideoType(this.srcUrl)
+      console.log(playerTypeObj)
+    }
+  },
+  computed: {
+    playerData () {
+      return getVideoType(this.srcUrl)
+    },
+    getVideoComponent () {
+      if (this.playerData.type){
+        return this.playerData.type
+      }
+      return null
+    },
+    videoComponent () {
+      return this.getVideoComponent
+    }
   }
 }
 </script>
-
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 h3 {
