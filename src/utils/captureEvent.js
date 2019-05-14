@@ -38,7 +38,7 @@ function createVideoEvent(payload){
 
 function sendToBackend(payload){
     if (process.env.VUE_APP_VIDEO_ANALYTICS_PLAYER_BACKEND){
-        axios.post('https://httpbin.org/post', payload)
+        axios.post(process.env.VUE_APP_VIDEO_ANALYTICS_PLAYER_BACKEND, payload)
           .then(function (response) {
             console.log(response);
           })
