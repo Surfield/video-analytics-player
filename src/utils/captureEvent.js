@@ -14,7 +14,7 @@ export function eventDataFormatter(eventName, eventTime, meta={}){
     let data = {
         videoAnalyticsPlayer: {
             event: captureEvent(eventName, eventTime),
-            version: pjson.version
+            version: pjson.version,
         },
     }
     if (Object.keys(meta).length !== 0){
@@ -24,9 +24,10 @@ export function eventDataFormatter(eventName, eventTime, meta={}){
     return data
 }
 
-export function sendVideoEventData(eventName, eventTime, meta){
+export function sendVideoEventData(eventName, eventTime, meta, srcUrl){
     let payload = eventDataFormatter(eventName, eventTime, meta)
-    
+    payload.videoAnalyticsPlayer.srcUrl = srcUrl
+
     createVideoEvent(payload)
     sendToBackend(payload)
 }

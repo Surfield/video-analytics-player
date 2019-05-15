@@ -1,6 +1,6 @@
 <template>
   <div>
-    <component v-if="getVideoComponent" :is="videoComponent" :meta="meta" :videoType='playerData.type' :videoId='playerData.id'/>
+    <component v-if="getVideoComponent" :is="videoComponent" :srcUrl="srcUrl" :meta="meta" :videoType='playerData.type' :videoId='playerData.id'/>
   </div>
 </template>
 
